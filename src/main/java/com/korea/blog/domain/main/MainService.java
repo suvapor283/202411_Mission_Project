@@ -13,11 +13,16 @@ public class MainService {
 
     private final NoteService noteService;
 
-    public void init(){
+    public void init() {
         List<Note> noteList = noteService.getList();
 
-        if(noteList.isEmpty()){
+        if (noteList.isEmpty()) {
             noteService.saveDefault();
         }
+    }
+
+    public List<Note> getNoteList() {
+
+        return noteService.getList();
     }
 }
