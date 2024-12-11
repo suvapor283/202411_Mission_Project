@@ -5,7 +5,8 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class MainController {
         mainService.init();
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String main(Model model) {
         List<Note> noteList = mainService.getNoteList();
 

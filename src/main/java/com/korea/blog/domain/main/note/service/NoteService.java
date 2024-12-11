@@ -13,16 +13,21 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
 
-    public List<Note> getList() {
-
-        return noteRepository.findAll();
-    }
-
     public Note saveDefault() {
         Note note = new Note();
         note.setTitle("new title...");
         note.setContent("");
 
         return noteRepository.save(note);
+    }
+
+    public List<Note> getList() {
+
+        return noteRepository.findAll();
+    }
+
+    public Note getOne(long noteId) {
+
+        return noteRepository.findById(noteId).orElseThrow();
     }
 }

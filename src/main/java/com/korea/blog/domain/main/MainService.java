@@ -25,4 +25,9 @@ public class MainService {
 
         return noteService.getList();
     }
+
+    public Note getNote(long noteId) {
+
+        return noteService.getOne(noteId);
+    }
 }
