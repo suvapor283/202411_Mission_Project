@@ -30,4 +30,12 @@ public class NoteService {
 
         return noteRepository.findById(noteId).orElseThrow();
     }
+
+    public void modify(long noteId, String title, String content) {
+        Note note = this.getOne(noteId);
+        note.setTitle(title);
+        note.setContent(content);
+
+        noteRepository.save(note);
+    }
 }

@@ -23,14 +23,42 @@
     </div>
     <div class="right bg-blue-300 h-[100%] w-[85%] p-2">
         <div class="flex flex-col gap-2">
-            <input class="input" type="text" th:value="${selectedNote.title}">
-            <textarea class="textarea textarea-bordered" th:text="${selectedNote.content}"></textarea>
+            <input class="input" type="text" id="title" th:value="${selectedNote.title}">
+            <textarea class="textarea textarea-bordered" id="content" th:text="${selectedNote.content}"></textarea>
         </div>
-        <div class="mt-[10px]">
-            <button class="btn btn-success">수정</button>
-            <button class="btn btn-error">삭제</button>
+        <div class="flex mt-[10px]">
+            <form th:action="@{|/notes/modify/${selectedNote.id}|}" method="post"
+                  onsubmit="updateNote(this); return false;">
+                <input type="submit" value="수정" class="btn btn-success"/>
+            </form>
+            <form action="">
+                <input type="submit" value="삭제" class="btn btn-error"/>
+            </form>
         </div>
     </div>
 </div>
+<script>
+
+    function updateNote(form) {
+        const titleInput = document.querySelector("#title");
+        const contentInput = document.querySelector("#content");
+
+        const newTitleInput = document.createElement('input');
+        newTitleInput.type = 'hidden';
+        newTitleInput.name = 'title';
+        newTitleInput.value = titleInput.value;
+        form.appendChild(newTitleInput);
+
+        const newContentInput = document.createElement('textarea');
+        newContentInput.style.display = 'none';
+        newContentInput.name = 'content';
+        newContentInput.value = contentInput.value;
+        form.appendChild(newContentInput);
+
+        form.submit();
+    }
+
+
+</script>
 </body>
 </html>
