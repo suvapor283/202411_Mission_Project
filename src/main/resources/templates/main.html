@@ -31,7 +31,8 @@
                   onsubmit="updateNote(this); return false;">
                 <input type="submit" value="수정" class="btn btn-success"/>
             </form>
-            <form action="">
+            <form th:action="@{|/notes/delete/${selectedNote.id}|}" method="post"
+                  onsubmit="deleteNote(this); return false;">
                 <input type="submit" value="삭제" class="btn btn-error"/>
             </form>
         </div>
@@ -55,6 +56,10 @@
         newContentInput.value = contentInput.value;
         form.appendChild(newContentInput);
 
+        form.submit();
+    }
+
+    function deleteNote(form) {
         form.submit();
     }
 
