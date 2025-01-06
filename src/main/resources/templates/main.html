@@ -44,25 +44,34 @@
         const titleInput = document.querySelector("#title");
         const contentInput = document.querySelector("#content");
 
-        const newTitleInput = document.createElement('input');
-        newTitleInput.type = 'hidden';
-        newTitleInput.name = 'title';
-        newTitleInput.value = titleInput.value;
-        form.appendChild(newTitleInput);
+        if (!form.querySelector('input[name="title"]')) {
+            const newTitleInput = document.createElement('input');
+            newTitleInput.type = 'hidden';
+            newTitleInput.name = 'title';
+            form.appendChild(newTitleInput);
+        }
 
-        const newContentInput = document.createElement('textarea');
-        newContentInput.style.display = 'none';
-        newContentInput.name = 'content';
-        newContentInput.value = contentInput.value;
-        form.appendChild(newContentInput);
+        if (!form.querySelector('textarea[name="content"]')) {
+            const newContentInput = document.createElement('textarea');
+            newContentInput.style.display = 'none';
+            newContentInput.name = 'content';
+            form.appendChild(newContentInput);
+        }
 
-        form.submit();
+
+        form.querySelector('input[name="title"]').value = titleInput.value;
+        form.querySelector('textarea[name="content"]').value = contentInput.value;
+
+        if (confirm("수정하시겠습니까?")) {
+            form.submit();
+        }
     }
 
     function deleteNote(form) {
-        form.submit();
+        if (confirm("삭제하시겠습니까?")) {
+            form.submit();
+        }
     }
-
 
 </script>
 </body>
